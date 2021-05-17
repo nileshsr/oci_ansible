@@ -1,0 +1,13 @@
+- hosts: localhost
+  vars:
+    ocid: "ocid1.instance.oc1.iad.anuwcljtj6x6wyqcgop7zcqseywyso4xkksl3o5jerlmatnesheemaam6rbq"
+    ansible_connection: local
+    ansible_python_interpreter: "{{ansible_playbook_python}}"
+  collections:
+    - oracle.oci
+  tasks:
+  - oci_compute_instance:
+      instance_id: "{{ ocid }}"
+    register: st
+  - debug:
+      var=st.instance.lifecycle_state
